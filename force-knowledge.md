@@ -24,7 +24,7 @@ i3 is a dynamic tiling window manager inspired by wmii that is primarily targete
 **[picom](https://wiki.archlinux.org/title/Picom) can be installed and configured to enable transparency effects inside i3wm:**
 
   ```
-  $ sudo pacman -Syu picom
+  $ sudo dnf install picom
   ```
 
   The default configuration is available in `/etc/xdg/picom.conf`.
