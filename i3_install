@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 # Maintainer: joekamprad [joekamprad //a_t// endeavouros.com]
-git clone https://github.com/endeavouros-team/endeavouros-i3wm-setup.git
-cd endeavouros-i3wm-setup/etc/skel/
-cp -R .config .local .icons ~/
+# Adapted for Fedora
+REPO_DIR="endeavouros-i3wm-setup-for-fedora"
+git clone https://github.com/Leandro-Michail-Krikis/endeavouros-i3wm-setup-for-fedora.git
+cd "${REPO_DIR}/etc/skel/" || exit 1
+cp -R .config .local ~/
 chmod -R +x ~/.config/i3/scripts
-cp .Xresources .profile xed.dconf .gtkrc-2.0 ~/
-dbus-launch dconf load / < ~/xed.dconf
-rm xed.dconf
-cd ..
-rm -rf endeavouros-i3wm-setup
-wget https://raw.githubusercontent.com/endeavouros-team/EndeavourOS-packages-lists/master/i3
-sudo pacman -S --needed - < i3
-rm i3
-#eos-packagelist --install "i3-Window-Manager"
+cp .Xresources .profile .gtkrc-2.0 ~/
+if [ -f set_once.sh ]; then cp set_once.sh ~/; fi
+if [ -f xed.dconf ]; then
+    cp xed.dconf ~/
+    dbus-launch dconf load / < ~/xed.dconf
+    rm ~/xed.dconf
+fi
+cd ../.. || exit 1
+# Install packages using dnf (Fedora package manager)
+# packages-fedora.txt contains Fedora-compatible package names
+mapfile -t PACKAGES < <(grep -v '^#' "${REPO_DIR}/packages-fedora.txt" | grep -v '^[[:space:]]*$')
+sudo dnf install -y "${PACKAGES[@]}"
+rm -rf "${REPO_DIR}"

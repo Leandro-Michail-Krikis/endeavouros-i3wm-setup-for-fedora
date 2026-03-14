@@ -189,15 +189,15 @@ Open i3blocks.conf and enable weather module by removing the commenting # there:
 ``` 
 
 
-## Tutorial to install EndeavourOS-i3wm-setup from scratch
+## Tutorial to install i3wm-setup on Fedora from scratch
 
-For installing it later on, in case if you have installed another DE on initial install from the ISO
+For installing it later on, in case if you have installed another DE on initial install
 
-1. Clone endeavouros-i3wm-setup dotfiles repo
+1. Clone this dotfiles repo
 
     ```
-    $ git clone https://github.com/endeavouros-team/endeavouros-i3wm-setup.git
-    $ cd endeavouros-i3wm-setup/etc/skel/
+    $ git clone https://github.com/Leandro-Michail-Krikis/endeavouros-i3wm-setup-for-fedora.git
+    $ cd endeavouros-i3wm-setup-for-fedora/etc/skel/
     ```
 
 2. Copy the files to user home directories.
@@ -219,28 +219,32 @@ For installing it later on, in case if you have installed another DE on initial 
     $ dbus-launch dconf load / < xed.dconf
     ```
 
-5. Install using different methods
+5. Install packages using DNF (Fedora package manager)
 
-    * **Method 1** - Using EndeavourOS-packages-lists repo
-
-        ```
-        $ wget https://raw.githubusercontent.com/endeavouros-team/EndeavourOS-packages-lists/master/i3
-        $ sudo pacman -S --needed - < i3
-        ```
-
-    * **Method 2** - Using eos-packagelist package from EOS repo
+    * **Method 1** - Using the Fedora package list from this repo
 
         ```
-        $ eos-packagelist --install "i3-Window-Manager"
+        $ sudo dnf install -y $(grep -v '^#' packages-fedora.txt | grep -v '^$' | tr '\n' ' ')
         ```
 
-    * **Method 3** - Using the i3_install script from the git for automated config and package installation in user home directory.
-    **WARNING - Method 3 will overwrite existing files. Make sure you backup users configs before running it on your own.**
+    * **Method 2** - Using the i3_install script from this repo for automated config and package installation.
+    **WARNING - Method 2 will overwrite existing files. Make sure you backup your configs before running it.**
 
         ```
-        $ wget https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/i3_install
-        $ ./i3_install
+        $ bash i3_install
         ```
+
+    > **Note:** The following packages from the original EndeavourOS setup are **not available** in
+    > standard Fedora repositories and have been replaced or removed:
+    > - `arc-gtk-theme-eos` → replaced by `arc-theme`
+    > - `archlinux-xdg-menu` → not available (Arch-specific), removed
+    > - `awesome-terminal-fonts` → replaced by `fontawesome-fonts`
+    > - `eos-settings-i3wm` → EndeavourOS-specific, removed
+    > - `endeavouros-xfce4-terminal-colors` → EndeavourOS-specific, removed
+    > - `eos-lightdm-slick-theme` → EndeavourOS-specific, removed
+    > - `eos-qogir-icons` → replaced by `papirus-icon-theme`
+    > - `i3-wm` → package is called `i3` in Fedora
+    > - `xorg-xdpyinfo` → `xdpyinfo` is provided by `xorg-x11-utils` in Fedora
 
 ## Screenshot
 

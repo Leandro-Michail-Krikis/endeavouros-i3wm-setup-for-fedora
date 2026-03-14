@@ -1,0 +1,70 @@
+# Fedora package list for i3wm setup
+# Adapted from the EndeavourOS i3wm setup
+# Replaces packages-repository.txt which points to the Arch/EndeavourOS package list
+#
+# Packages NOT available in standard Fedora repos (removed):
+#   arc-gtk-theme-eos      -> replaced by arc-theme
+#   archlinux-xdg-menu     -> Arch-specific, no Fedora equivalent
+#   awesome-terminal-fonts -> replaced by fontawesome-fonts
+#   eos-settings-i3wm      -> EndeavourOS-specific, no Fedora equivalent
+#   endeavouros-xfce4-terminal-colors -> EndeavourOS-specific
+#   eos-lightdm-slick-theme -> EndeavourOS-specific
+#   eos-qogir-icons        -> EndeavourOS-specific, replaced by papirus-icon-theme
+#   i3-wm                  -> package is called i3 in Fedora
+#   xorg-xdpyinfo          -> xdpyinfo is provided by xorg-x11-utils in Fedora
+#
+# Packages renamed in Fedora:
+#   i3-wm          -> i3
+#   dex            -> dex  (was dex-autostart in older Fedora)
+#   xorg-xdpyinfo  -> xorg-x11-utils
+#   lm-sensors     -> lm_sensors (for the temperature i3blocks script)
+#
+acpi
+arandr
+arc-theme
+brightnessctl
+dex
+dmenu
+dunst
+feh
+fontawesome-fonts
+galculator
+gvfs
+gvfs-afc
+gvfs-gphoto2
+gvfs-mtp
+gvfs-nfs
+gvfs-smb
+i3
+i3blocks
+i3lock
+i3status
+ImageMagick
+jq
+lightdm
+lightdm-slick-greeter
+lm_sensors
+mpv
+network-manager-applet
+numlockx
+nwg-look
+papirus-icon-theme
+pavucontrol
+playerctl
+polkit-gnome
+rofi
+scrot
+sysstat
+thunar
+thunar-archive-plugin
+thunar-volman
+tumbler
+unzip
+xarchiver
+xbindkeys
+xdg-user-dirs-gtk
+xed
+xfce4-terminal
+xorg-x11-utils
+xss-lock
+zip

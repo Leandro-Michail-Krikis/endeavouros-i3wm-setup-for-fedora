@@ -392,7 +392,7 @@ exec_always $HOME/.config/i3/scripts/import-gsettings
 # manpage: https://man.archlinux.org/man/picom.1.en
 # The default configuration is available in /etc/xdg/picom.conf
 # For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
-# install picom package (sudo pacman -Syu picom)
+# install picom package (sudo dnf install picom)
 
 # start using default config
 #exec_always --no-startup-id picom -b
@@ -405,7 +405,8 @@ exec_always $HOME/.config/i3/scripts/import-gsettings
 
 
 #get auth work with polkit-gnome
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# On Fedora the polkit-gnome agent is located at /usr/libexec/
+exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 
 # dex execute .desktop files + apps using /etc/xdg/autostart.
 # when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
@@ -415,7 +416,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex --autostart --environment i3
 
-# start welcome app
+# start welcome app (EndeavourOS-specific, not available on Fedora)
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3
 
 # num lock activated
@@ -433,7 +434,11 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+# On Fedora, set your preferred wallpaper path below.
+# Fedora wallpapers are typically found under /usr/share/backgrounds/
+# The path varies by Fedora version (e.g. /usr/share/backgrounds/f42/default/f42.png).
+# Replace the path below with your preferred wallpaper, or comment this line out.
+#exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/backgrounds/default.png
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -464,7 +469,7 @@ exec --no-startup-id /usr/bin/dunst
 
 # autotiling script
 # https://github.com/nwg-piotr/autotiling
-# `pacman -Syu autotiling`
+# `sudo dnf install autotiling`
 #exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
